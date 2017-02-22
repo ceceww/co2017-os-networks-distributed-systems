@@ -16,6 +16,7 @@ public abstract class MemManager {
     //Constructor
     public MemManager(int s){
         //All data in array _memory is set to '.' indicating it is empty
+        _memory = new char[s];
         for (int i=0; i<s; i++){
             _memory[i] = '.';
         }
@@ -75,7 +76,7 @@ public abstract class MemManager {
     //Generate a string representing the state of the Memory.
     @Override
     public String toString(){
-        return
+        return 
     }
     
 }
