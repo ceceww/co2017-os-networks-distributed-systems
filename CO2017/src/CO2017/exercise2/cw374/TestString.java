@@ -5,12 +5,13 @@
  */
 package CO2017.exercise2.cw374;
 
-import java.util.Arrays;
-
 /**
  *
  * @author cecew
  */
+
+//Change to StringBuffer instead
+//Also consider using StringFormat
 public class TestString {
     char[] _memory;
     
@@ -27,7 +28,7 @@ public class TestString {
      char[][] mem = new char[noOfRows][20]; //mem is the 2D array (in this case [5][20], 5*20=100 is size of memory)
      int k=0; //incremented in for loop to point to data stored in _memory[k]
       
-        for(int i=0; i<noOfRows; i++){ //iterate over rows
+        for(int i=0; i<noOfRows; i++){ //iterate over row s
             for (int j=0; j<20; j++){ //iterate over columns
                         mem[i][j] = _memory[k];
                         k++;

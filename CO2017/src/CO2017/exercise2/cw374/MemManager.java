@@ -21,7 +21,7 @@ public abstract class MemManager {
             _memory[i] = '.';
         }
         _largestSpace = s;
-        _changed = false;
+        _changed = true;
     }
     
     //Allocate memory for a process; block until space is available
@@ -76,7 +76,23 @@ public abstract class MemManager {
     //Generate a string representing the state of the Memory.
     @Override
     public String toString(){
-        return 
+        StringBuffer sb = new StringBuffer(String.valueOf(_memory));
+       
+        int k=0;
+        for(int i=0;i<_memory.length;i++){
+           if(i%20==0){
+               String padded = String.format("%3d|",i);
+               sb.insert(i+k, padded);
+               k+=4;
+           }   
+        }
+        
+        for(int i=24;i<=sb.length();i+=26){
+            sb.insert(i, "|\n");
+        }
+        
+        
+         return sb.toString();
     }
     
 }
