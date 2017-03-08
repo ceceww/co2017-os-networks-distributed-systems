@@ -16,10 +16,20 @@ public class SimController implements Runnable {
     
     @Override
     public void run(){
-        System.out.println("In watcher thread");
-            if(m.isChanged()){
+          while(true){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(SimController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+              if(m.isChanged()){
          System.out.println(m.toString());
-         }
+              m._changed=false;}
+              if(ex.isShutdown()){
+              break;
+          }
+          }
+         
     }
     
     
@@ -37,14 +47,14 @@ public class SimController implements Runnable {
            SimController sc = new SimController();
            Thread watcher = new Thread(sc);
            watcher.start(); //Start the watcher thread
-           watcher.join();
            
            QueueHandler queuehandler = new QueueHandler(ex, m, fileName);
            Thread q = new Thread(queuehandler);
            q.start();
+           watcher.join();
            q.join();
           
-           
+           ex.shutdown();
            System.out.println("All threads have terminated");
         }
                 

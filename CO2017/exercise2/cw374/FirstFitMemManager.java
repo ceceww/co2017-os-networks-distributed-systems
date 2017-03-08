@@ -21,9 +21,8 @@ public class FirstFitMemManager extends MemManager{
     //returns the address of a space of at least size s.
     @Override
     public int findSpace(int s){
-        int size;
-        //initialize start address. If no space large enough is found, will return -1
-        int startAddress=-1;
+        int size;  
+        int startAddress=0;
         for (int i=0; i<_memory.length; i++){
             size=this.countFreeSpacesAt(i);
             if(size>=s){
