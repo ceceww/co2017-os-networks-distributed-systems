@@ -23,7 +23,7 @@ public class MessageClient {
     /**
      * Main client behaviour
      */
-    public static void main (String[] args){
+    public static void main (String[] args) {
         
         String servername = args[0];
         int port = Integer.parseInt(args[1]);
@@ -68,24 +68,30 @@ public class MessageClient {
                
                 /**
                  * Continues to loop (reading in headers)
-                 * Until a line with "." is read
+                 * until a line with "." is read
                  */
                  if(command.contains("LIST")){
                     out.write(String.format("%s%n",command));
-                    out.flush();
+                    out.flush();      
+                    // Print the result if it does not equal "."
                     do {
                         result = in.readLine();
+                        if(!result.equals(".")){
                         System.out.println(result);
+                        }
                     }
                     while(!result.equals("."));
                 }             
              
                  /**
                   * Line is read in once for all commands except for LIST which required a loop
+                  * Print the result if it does not equal "."
                   */
                 if(!command.equals("BYE")&&!command.contains("LIST")){
                     result = in.readLine();
+                    if(!result.equals(".")){    
                     System.out.println(result);
+                    }
                 }
              
             }
@@ -99,8 +105,15 @@ public class MessageClient {
              out.flush();
              server.close();
         }
+        /**
+         * IOException is thrown
+         * if there are no servers to connect to
+         * or if server closes connection
+         */
       catch (IOException e) {
-          System.out.println("No servers to connect to");
+          System.out.println("Server closed connection");
       }
+        catch(Exception e){
+        }
     }
 }

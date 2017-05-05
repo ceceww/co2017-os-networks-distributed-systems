@@ -22,6 +22,9 @@ public class MessageServer {
         
         try (ServerSocket server = new ServerSocket(port)) {
             System.out.println("Starting Message server on port " + port);
+            
+            // create a new message board
+            MessageBoard b = new MessageBoard();
         
             while(true){
             Socket client = server.accept();
@@ -30,7 +33,9 @@ public class MessageServer {
 
             System.out.println("connection: " + clientAddress);
 
-            MessageServerHandler msh = new MessageServerHandler(new MessageBoard(), client);
+            // same message board used for each client that connects
+            // so all messages retrieved/sent to same message board.
+            MessageServerHandler msh = new MessageServerHandler(b, client);
 
             ThreadPoolExecutor ex = (ThreadPoolExecutor) Executors.newCachedThreadPool(); 
             ex.execute(msh);

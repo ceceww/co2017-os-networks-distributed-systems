@@ -100,7 +100,7 @@ public class MessageServerHandler implements Runnable{
                    MessageHeader mh = new MessageHeader(this.id, msgid);
                    String msgbody = command.substring(command.lastIndexOf(":")+1);
                    msgboard.SaveMessage(mh,msgbody);
-                   response = "";
+                   response = ".";
                    out.write(String.format("%s%n",response));
                    out.flush();
                    }
@@ -140,7 +140,7 @@ public class MessageServerHandler implements Runnable{
             client.close(); 
         }
         catch (IOException e){
-        System.err.println(e);
+        System.out.println("Connection dropped unexpectedly.");
         }
         
     }
