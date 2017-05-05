@@ -87,6 +87,7 @@ public class MessageClient {
                   * Line is read in once for all commands except for LIST which required a loop
                   * Print the result if it does not equal "."
                   */
+              
                 if(!command.equals("BYE")&&!command.contains("LIST")&&!command.contains("SEND")){
                     result = in.readLine();
                     if(!result.equals(".")){    
@@ -110,10 +111,9 @@ public class MessageClient {
          * if there are no servers to connect to
          * or if server closes connection
          */
-      catch (IOException e) {
+      catch (IOException | NullPointerException e) {
           System.out.println("Server closed connection");
       }
-        catch(Exception e){
-        }
+       
     }
 }

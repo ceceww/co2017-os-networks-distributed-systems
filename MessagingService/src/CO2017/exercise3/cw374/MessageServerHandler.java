@@ -102,9 +102,6 @@ public class MessageServerHandler implements Runnable{
                    MessageHeader mh = new MessageHeader(this.id, msgid);
                    String msgbody = command.substring(command.lastIndexOf(":")+1);
                    msgboard.SaveMessage(mh,msgbody);
-                   response = ".";
-                   out.write(String.format("%s%n",response));
-                   out.flush();
                    }
                    catch (NumberFormatException e){}
                  
