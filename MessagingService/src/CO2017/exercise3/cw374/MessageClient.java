@@ -84,7 +84,9 @@ public class MessageClient {
                 }             
              
                  /**
-                  * Line is read in once for all commands except for LIST which required a loop
+                  * Line is read in once for all commands except for 
+                  * SEND which does not wait for a response
+                  * and LIST which required a loop
                   * Print the result if it does not equal "."
                   */
               
@@ -107,16 +109,13 @@ public class MessageClient {
              server.close();
         }
         /**
-         * IOException is thrown
+         * Catch exceptions that arise
          * if there are no servers to connect to
          * or if server closes connection
+         * display error message
          */
-      catch (IOException e) {
+      catch (IOException | NullPointerException e) {
           System.out.println("Server closed connection");
-      }
-      
-      catch (NullPointerException e) {
-      }
-       
+      }  
     }
 }

@@ -138,6 +138,11 @@ public class MessageServerHandler implements Runnable{
            while(!command.equals("BYE"));
             client.close(); 
         }
+        
+        /**
+         * Catch exceptions that arise due to client disconnecting
+         * and display message
+         */
         catch (IOException | NullPointerException e){
         System.out.println("Connection dropped unexpectedly.");
         }
