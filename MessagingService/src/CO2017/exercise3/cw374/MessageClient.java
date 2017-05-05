@@ -111,8 +111,11 @@ public class MessageClient {
          * if there are no servers to connect to
          * or if server closes connection
          */
-      catch (IOException | NullPointerException e) {
+      catch (IOException e) {
           System.out.println("Server closed connection");
+      }
+      
+      catch (NullPointerException e) {
       }
        
     }
