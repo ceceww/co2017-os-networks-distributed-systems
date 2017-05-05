@@ -67,7 +67,9 @@ public class MessageServerHandler implements Runnable{
              */
               do{
                 command = in.readLine();
+                if(!command.isEmpty()){
                 System.out.println(command);
+                }
                 
                 /**
                  * Send back a list of the message headers (one per line) and terminated by a single "." on a line.
@@ -139,7 +141,7 @@ public class MessageServerHandler implements Runnable{
            while(!command.equals("BYE"));
             client.close(); 
         }
-        catch (IOException e){
+        catch (IOException | NullPointerException e){
         System.out.println("Connection dropped unexpectedly.");
         }
         
